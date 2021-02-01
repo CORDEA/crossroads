@@ -7,7 +7,17 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.pink[300],
+        accentColor: Colors.amber[300],
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.pink[300],
+        ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.pink[300],
+          textTheme: ButtonTextTheme.primary,
+          minWidth: 64,
+          height: 44,
+        ),
       ),
       home: Calculator(title: 'Flutter Demo Home Page'),
     );
