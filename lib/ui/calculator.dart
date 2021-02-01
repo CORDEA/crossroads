@@ -16,25 +16,19 @@ class Calculator extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Purchase price',
-                ),
+              _CalculatorTextField(
+                text: 'Purchase price',
+                onChanged: null,
               ),
               SizedBox(height: 16),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Current price',
-                ),
+              _CalculatorTextField(
+                text: 'Current price',
+                onChanged: null,
               ),
               SizedBox(height: 16),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Fee rate',
-                ),
+              _CalculatorTextField(
+                text: 'Fee rate',
+                onChanged: null,
               ),
               SizedBox(height: 32),
               Align(
@@ -50,6 +44,28 @@ class Calculator extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _CalculatorTextField extends StatelessWidget {
+  final String text;
+  final ValueChanged<String> onChanged;
+
+  _CalculatorTextField({
+    Key key,
+    @required this.text,
+    @required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: text,
+      ),
+      onChanged: onChanged,
     );
   }
 }
