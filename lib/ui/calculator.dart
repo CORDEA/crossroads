@@ -1,3 +1,5 @@
+import 'package:crossroads/models/stock.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class Calculator extends StatelessWidget {
@@ -18,17 +20,23 @@ class Calculator extends StatelessWidget {
             children: [
               _CalculatorTextField(
                 text: 'Purchase price',
-                onChanged: null,
+                onChanged: (text) {
+                  context.read<StockModel>().updatePurchasePrice(text);
+                },
               ),
               SizedBox(height: 16),
               _CalculatorTextField(
                 text: 'Current price',
-                onChanged: null,
+                onChanged: (text) {
+                  context.read<StockModel>().updateCurrentPrice(text);
+                },
               ),
               SizedBox(height: 16),
               _CalculatorTextField(
                 text: 'Fee rate',
-                onChanged: null,
+                onChanged: (text) {
+                  context.read<StockModel>().updateFeeRate(text);
+                },
               ),
               SizedBox(height: 32),
               Align(
@@ -37,7 +45,9 @@ class Calculator extends StatelessWidget {
                   child: const Text(
                     'Calculate',
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<StockModel>().calculate();
+                  },
                 ),
               ),
             ],
