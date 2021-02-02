@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => StockModel(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Crossroads',
         theme: ThemeData(
           primaryColor: Colors.pink[300],
           accentColor: Colors.amber[300],
@@ -23,7 +23,7 @@ class App extends StatelessWidget {
             height: 44,
           ),
         ),
-        home: Calculator(title: 'Flutter Demo Home Page'),
+        home: Calculator(title: 'Crossroads'),
       ),
     );
   }
