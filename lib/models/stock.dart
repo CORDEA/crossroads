@@ -1,23 +1,29 @@
 import 'package:flutter/foundation.dart';
 
 class StockModel extends ChangeNotifier {
-  String _currentPrice;
-  String _purchasePrice;
-  String _feeRate;
+  double _currentPrice;
+  double _purchasePrice;
+  double _feeRate;
+
+  double _gain;
 
   void updateCurrentPrice(String currentPrice) {
-    _currentPrice = currentPrice;
+    _currentPrice = double.tryParse(currentPrice) ?? 0;
   }
 
   void updatePurchasePrice(String purchasePrice) {
-    _purchasePrice = purchasePrice;
+    _purchasePrice = double.tryParse(purchasePrice) ?? 0;
   }
 
   void updateFeeRate(String feeRate) {
-    _feeRate = feeRate;
+    _feeRate = double.tryParse(feeRate) ?? 0;
   }
 
   void calculate() {
-    // TODO
+    var source = _purchasePrice * (1 + _feeRate);
+    var target = _currentPrice * (1 + _feeRate);
+
+    _gain = target - source;
+    notifyListeners();
   }
 }
