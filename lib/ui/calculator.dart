@@ -20,36 +20,40 @@ class Calculator extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              _CalculatorTextField(
-                text: 'Purchase price',
-                errorText: '',
-                onChanged: (text) {
-                  context.read<StockModel>().updatePurchasePrice(text);
-                },
+              Selector<StockModel, bool>(
+                selector: (_, model) => model.hasPurchasePriceError,
+                builder: (_, hasError, __) => _CalculatorTextField(
+                  text: 'Purchase price',
+                  errorText: hasError ? 'Illegal value' : null,
+                  onChanged: context.read<StockModel>().updatePurchasePrice,
+                ),
               ),
               SizedBox(height: 16),
-              _CalculatorTextField(
-                text: 'Current price',
-                errorText: '',
-                onChanged: (text) {
-                  context.read<StockModel>().updateCurrentPrice(text);
-                },
+              Selector<StockModel, bool>(
+                selector: (_, model) => model.hasCurrentPriceError,
+                builder: (_, hasError, __) => _CalculatorTextField(
+                  text: 'Current price',
+                  errorText: hasError ? 'Illegal value' : null,
+                  onChanged: context.read<StockModel>().updateCurrentPrice,
+                ),
               ),
               SizedBox(height: 16),
-              _CalculatorTextField(
-                text: 'Purchase fee rate',
-                errorText: '',
-                onChanged: (text) {
-                  context.read<StockModel>().updatePurchaseFeeRate(text);
-                },
+              Selector<StockModel, bool>(
+                selector: (_, model) => model.hasPurchaseFeeRateError,
+                builder: (_, hasError, __) => _CalculatorTextField(
+                  text: 'Purchase fee rate',
+                  errorText: hasError ? 'Illegal value' : null,
+                  onChanged: context.read<StockModel>().updatePurchaseFeeRate,
+                ),
               ),
               SizedBox(height: 16),
-              _CalculatorTextField(
-                text: 'Sale fee rate',
-                errorText: '',
-                onChanged: (text) {
-                  context.read<StockModel>().updateSaleFeeRate(text);
-                },
+              Selector<StockModel, bool>(
+                selector: (_, model) => model.hasSaleFeeRateError,
+                builder: (_, hasError, __) => _CalculatorTextField(
+                  text: 'Sale fee rate',
+                  errorText: hasError ? 'Illegal value' : null,
+                  onChanged: context.read<StockModel>().updateSaleFeeRate,
+                ),
               ),
               SizedBox(height: 32),
               Align(
