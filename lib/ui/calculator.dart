@@ -22,6 +22,7 @@ class Calculator extends StatelessWidget {
             children: [
               _CalculatorTextField(
                 text: 'Purchase price',
+                errorText: '',
                 onChanged: (text) {
                   context.read<StockModel>().updatePurchasePrice(text);
                 },
@@ -29,6 +30,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               _CalculatorTextField(
                 text: 'Current price',
+                errorText: '',
                 onChanged: (text) {
                   context.read<StockModel>().updateCurrentPrice(text);
                 },
@@ -36,6 +38,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               _CalculatorTextField(
                 text: 'Purchase fee rate',
+                errorText: '',
                 onChanged: (text) {
                   context.read<StockModel>().updatePurchaseFeeRate(text);
                 },
@@ -43,6 +46,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               _CalculatorTextField(
                 text: 'Sale fee rate',
+                errorText: '',
                 onChanged: (text) {
                   context.read<StockModel>().updateSaleFeeRate(text);
                 },
@@ -77,11 +81,13 @@ class Calculator extends StatelessWidget {
 
 class _CalculatorTextField extends StatelessWidget {
   final String text;
+  final String errorText;
   final ValueChanged<String> onChanged;
 
   _CalculatorTextField({
     Key key,
     @required this.text,
+    @required this.errorText,
     @required this.onChanged,
   }) : super(key: key);
 
@@ -91,7 +97,9 @@ class _CalculatorTextField extends StatelessWidget {
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: text,
+        errorText: errorText,
       ),
+      keyboardType: TextInputType.number,
       onChanged: onChanged,
     );
   }
