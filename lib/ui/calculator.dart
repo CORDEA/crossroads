@@ -33,9 +33,16 @@ class Calculator extends StatelessWidget {
               ),
               SizedBox(height: 16),
               _CalculatorTextField(
-                text: 'Fee rate',
+                text: 'Purchase fee rate',
                 onChanged: (text) {
-                  context.read<StockModel>().updateFeeRate(text);
+                  context.read<StockModel>().updatePurchaseFeeRate(text);
+                },
+              ),
+              SizedBox(height: 16),
+              _CalculatorTextField(
+                text: 'Sale fee rate',
+                onChanged: (text) {
+                  context.read<StockModel>().updateSaleFeeRate(text);
                 },
               ),
               SizedBox(height: 32),
