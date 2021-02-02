@@ -9,6 +9,8 @@ class Calculator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var gain = context.select<StockModel, String>((value) => value.gain);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -57,6 +59,14 @@ class Calculator extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: 32),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  gain,
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              )
             ],
           ),
         ),
