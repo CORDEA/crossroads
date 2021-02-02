@@ -1,12 +1,17 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 class StockModel extends ChangeNotifier {
+  static final NumberFormat _formatter = NumberFormat('#,###.0#', 'en_US');
+
   double _currentPrice;
   double _purchasePrice;
   double _purchaseFeeRate;
   double _saleFeeRate;
 
-  double _gain;
+  double _gain = 0;
+
+  String get gain => _formatter.format(_gain);
 
   void updateCurrentPrice(String currentPrice) {
     _currentPrice = double.tryParse(currentPrice) ?? 0;
