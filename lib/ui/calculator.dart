@@ -3,15 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class Calculator extends StatelessWidget {
-  Calculator({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Crossroads'),
       ),
       body: Center(
         child: Container(

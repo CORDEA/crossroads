@@ -1,5 +1,6 @@
 import 'package:crossroads/models/stock.dart';
 import 'package:crossroads/ui/calculator.dart';
+import 'package:crossroads/ui/presets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,11 @@ class App extends StatelessWidget {
             height: 44,
           ),
         ),
-        home: Calculator(title: 'Crossroads'),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Calculator(),
+          '/presets': (context) => Presets(),
+        },
       ),
     );
   }
