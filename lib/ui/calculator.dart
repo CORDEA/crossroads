@@ -9,8 +9,6 @@ class Calculator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var gain = context.select<StockModel, String>((value) => value.gain);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -68,12 +66,9 @@ class Calculator extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              Align(
+              const Align(
                 alignment: Alignment.center,
-                child: Text(
-                  gain,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
+                child: _CalculatorResult(),
               )
             ],
           ),
@@ -105,6 +100,19 @@ class _CalculatorTextField extends StatelessWidget {
       ),
       keyboardType: TextInputType.number,
       onChanged: onChanged,
+    );
+  }
+}
+
+class _CalculatorResult extends StatelessWidget {
+  const _CalculatorResult({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var gain = context.select<StockModel, String>((value) => value.gain);
+    return Text(
+      gain,
+      style: Theme.of(context).textTheme.headline5,
     );
   }
 }
