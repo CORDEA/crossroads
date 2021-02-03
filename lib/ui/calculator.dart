@@ -50,16 +50,27 @@ class Calculator extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              Align(
-                alignment: Alignment.centerRight,
-                child: RaisedButton(
-                  child: const Text(
-                    'Calculate',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  RaisedButton(
+                    child: const Text(
+                      'Presets',
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/presets');
+                    },
                   ),
-                  onPressed: () {
-                    context.read<StockModel>().calculate();
-                  },
-                ),
+                  SizedBox(width: 16),
+                  RaisedButton(
+                    child: const Text(
+                      'Calculate',
+                    ),
+                    onPressed: () {
+                      context.read<StockModel>().calculate();
+                    },
+                  ),
+                ],
               ),
               SizedBox(height: 32),
               const Align(
