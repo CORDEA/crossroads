@@ -1,4 +1,5 @@
 import 'package:crossroads/models/stock.dart';
+import 'package:crossroads/ui/outlined_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class Calculator extends StatelessWidget {
             children: [
               Selector<StockModel, bool>(
                 selector: (_, model) => model.hasPurchasePriceError,
-                builder: (_, hasError, __) => _CalculatorTextField(
+                builder: (_, hasError, __) => OutlinedTextField(
                   text: 'Purchase price',
                   errorText: hasError ? 'Illegal value' : null,
                   onChanged: context.read<StockModel>().updatePurchasePrice,
@@ -25,7 +26,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               Selector<StockModel, bool>(
                 selector: (_, model) => model.hasCurrentPriceError,
-                builder: (_, hasError, __) => _CalculatorTextField(
+                builder: (_, hasError, __) => OutlinedTextField(
                   text: 'Current price',
                   errorText: hasError ? 'Illegal value' : null,
                   onChanged: context.read<StockModel>().updateCurrentPrice,
@@ -34,7 +35,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               Selector<StockModel, bool>(
                 selector: (_, model) => model.hasPurchaseFeeRateError,
-                builder: (_, hasError, __) => _CalculatorTextField(
+                builder: (_, hasError, __) => OutlinedTextField(
                   text: 'Purchase fee rate',
                   errorText: hasError ? 'Illegal value' : null,
                   onChanged: context.read<StockModel>().updatePurchaseFeeRate,
@@ -43,7 +44,7 @@ class Calculator extends StatelessWidget {
               SizedBox(height: 16),
               Selector<StockModel, bool>(
                 selector: (_, model) => model.hasSaleFeeRateError,
-                builder: (_, hasError, __) => _CalculatorTextField(
+                builder: (_, hasError, __) => OutlinedTextField(
                   text: 'Sale fee rate',
                   errorText: hasError ? 'Illegal value' : null,
                   onChanged: context.read<StockModel>().updateSaleFeeRate,
@@ -81,32 +82,6 @@ class Calculator extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _CalculatorTextField extends StatelessWidget {
-  final String text;
-  final String errorText;
-  final ValueChanged<String> onChanged;
-
-  _CalculatorTextField({
-    Key key,
-    @required this.text,
-    @required this.errorText,
-    @required this.onChanged,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: text,
-        errorText: errorText,
-      ),
-      keyboardType: TextInputType.number,
-      onChanged: onChanged,
     );
   }
 }
