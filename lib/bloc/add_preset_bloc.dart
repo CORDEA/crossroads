@@ -1,16 +1,21 @@
+import 'package:crossroads/models/preset.dart';
 import 'package:crossroads/repositories/preset_repository.dart';
 import 'package:flutter/foundation.dart';
 
 class AddPresetBloc extends ChangeNotifier {
   final PresetRepository _repository;
 
-  String _title;
-  double _purchaseFeeRate;
-  bool _hasPurchaseFeeRateError;
-  double _saleFeeRate;
-  bool _hasSaleFeeRateError;
+  String _title = '';
+  double _purchaseFeeRate = 0;
+  bool _hasPurchaseFeeRateError = false;
+  double _saleFeeRate = 0;
+  bool _hasSaleFeeRateError = false;
+
+  bool _completed = false;
 
   AddPresetBloc(this._repository);
+
+  bool get completed => _completed;
 
   void onTitleChanged(String value) {
     _title = value;
@@ -34,5 +39,12 @@ class AddPresetBloc extends ChangeNotifier {
     if (_hasPurchaseFeeRateError || _hasSaleFeeRateError) {
       return;
     }
+
+    _repository.insert(Preset(_title, _purchaseFeeRate, _saleFeeRate)).then(
+      (value) {
+        _completed = true;
+        notifyListeners();
+      },
+    );
   }
 }

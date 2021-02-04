@@ -6,6 +6,13 @@ import 'package:provider/provider.dart';
 class AddPreset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var completed = context.select<AddPresetBloc, bool>(
+      (value) => value.completed,
+    );
+    if (completed) {
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Add preset'),
