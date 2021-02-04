@@ -1,5 +1,7 @@
+import 'package:crossroads/bloc/add_preset_bloc.dart';
 import 'package:crossroads/ui/outlined_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddPreset extends StatelessWidget {
   @override
@@ -15,26 +17,34 @@ class AddPreset extends StatelessWidget {
             OutlinedTextField(
               text: 'Title',
               errorText: '',
-              onChanged: (text) {},
+              onChanged: (text) {
+                context.read<AddPresetBloc>().onTitleChanged(text);
+              },
             ),
             const SizedBox(height: 16),
             OutlinedTextField(
               text: 'Purchase fee rate',
               errorText: '',
-              onChanged: (text) {},
+              onChanged: (text) {
+                context.read<AddPresetBloc>().onPurchaseFeeRateChanged(text);
+              },
             ),
             const SizedBox(height: 16),
             OutlinedTextField(
               text: 'Sale fee rate',
               errorText: '',
-              onChanged: (text) {},
+              onChanged: (text) {
+                context.read<AddPresetBloc>().onSaleFeeRateChanged(text);
+              },
             ),
             const SizedBox(height: 32),
             Align(
               alignment: Alignment.centerRight,
               child: RaisedButton(
                 child: const Text('Add'),
-                onPressed: () {},
+                onPressed: () {
+                  context.read<AddPresetBloc>().submit();
+                },
               ),
             ),
           ],
