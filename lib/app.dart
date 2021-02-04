@@ -1,4 +1,6 @@
+import 'package:crossroads/bloc/preset_bloc.dart';
 import 'package:crossroads/models/stock.dart';
+import 'package:crossroads/repositories/preset_repository.dart';
 import 'package:crossroads/ui/calculator.dart';
 import 'package:crossroads/ui/presets.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,16 @@ import 'package:provider/provider.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => StockModel(),
+    return MultiProvider(
+      providers: [
+        Provider.value(value: PresetRepository()),
+        ChangeNotifierProvider(
+          create: (context) => StockModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PresetBloc(context.read()),
+        ),
+      ],
       child: MaterialApp(
         title: 'Crossroads',
         theme: ThemeData(
