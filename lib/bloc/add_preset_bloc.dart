@@ -1,11 +1,16 @@
+import 'package:crossroads/repositories/preset_repository.dart';
 import 'package:flutter/foundation.dart';
 
 class AddPresetBloc extends ChangeNotifier {
+  final PresetRepository _repository;
+
   String _title;
   double _purchaseFeeRate;
   bool _hasPurchaseFeeRateError;
   double _saleFeeRate;
   bool _hasSaleFeeRateError;
+
+  AddPresetBloc(this._repository);
 
   void onTitleChanged(String value) {
     _title = value;
