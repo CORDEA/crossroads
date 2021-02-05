@@ -11,7 +11,6 @@ class OutlinedTextField extends StatelessWidget {
     @required this.errorText,
     @required this.onChanged,
   })  : assert(text != null),
-        assert(errorText != null),
         assert(onChanged != null),
         super(key: key);
 
