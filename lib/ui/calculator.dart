@@ -1,5 +1,6 @@
 import 'package:crossroads/models/stock.dart';
 import 'package:crossroads/ui/outlined_text_field.dart';
+import 'package:crossroads/ui/presets.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,7 @@ class Calculator extends StatelessWidget {
                       'Presets',
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/presets');
+                      Navigator.of(context).push(Presets.route());
                     },
                   ),
                   SizedBox(width: 16),

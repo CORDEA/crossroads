@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddPreset extends StatelessWidget {
+  static Route route() => MaterialPageRoute(builder: (_) => AddPreset());
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

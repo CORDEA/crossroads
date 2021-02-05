@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Presets extends StatefulWidget {
+  static Route route() => MaterialPageRoute(builder: (_) => Presets());
+
   @override
   State<StatefulWidget> createState() => _Presets();
 }
@@ -26,11 +28,8 @@ class _Presets extends State<Presets> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
-          var needsRefresh = await Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => AddPreset(),
-            ),
-          );
+          var needsRefresh =
+              await Navigator.of(context).push(AddPreset.route());
           if (needsRefresh == true) {
             context.read<PresetBloc>().update();
           }
