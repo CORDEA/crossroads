@@ -12,6 +12,12 @@ class Presets extends StatelessWidget {
         title: Text('Presets'),
       ),
       body: _PresetsList(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed('/presets/add');
+        },
+      ),
     );
   }
 }
