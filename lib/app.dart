@@ -13,7 +13,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider.value(value: PresetRepository()),
+        Provider(
+          create: (context) => PresetRepository(),
+        ),
         ChangeNotifierProvider(
           create: (context) => StockModel(),
         ),

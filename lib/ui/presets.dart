@@ -3,10 +3,20 @@ import 'package:crossroads/models/preset.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Presets extends StatelessWidget {
+class Presets extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _Presets();
+}
+
+class _Presets extends State<Presets> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PresetBloc>().update();
+  }
+
   @override
   Widget build(BuildContext context) {
-    context.read<PresetBloc>().update();
     return Scaffold(
       appBar: AppBar(
         title: Text('Presets'),
