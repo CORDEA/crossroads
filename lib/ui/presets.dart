@@ -1,5 +1,6 @@
 import 'package:crossroads/bloc/preset_bloc.dart';
 import 'package:crossroads/models/preset.dart';
+import 'package:crossroads/ui/add_preset.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +25,15 @@ class _Presets extends State<Presets> {
       body: _PresetsList(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).pushNamed('/presets/add');
+        onPressed: () async {
+          var needsRefresh = await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => AddPreset(),
+            ),
+          );
+          if (needsRefresh == true) {
+            context.read<PresetBloc>().update();
+          }
         },
       ),
     );

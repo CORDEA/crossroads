@@ -6,12 +6,22 @@ import 'package:provider/provider.dart';
 class AddPreset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => AddPresetBloc(context.read()),
+      child: _AddPreset(),
+    );
+  }
+}
+
+class _AddPreset extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     var completed = context.select<AddPresetBloc, bool>(
       (value) => value.completed,
     );
     Future.microtask(() {
       if (completed) {
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       }
     });
     return Scaffold(

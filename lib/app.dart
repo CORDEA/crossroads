@@ -1,4 +1,3 @@
-import 'package:crossroads/bloc/add_preset_bloc.dart';
 import 'package:crossroads/bloc/preset_bloc.dart';
 import 'package:crossroads/models/stock.dart';
 import 'package:crossroads/repositories/preset_repository.dart';
@@ -21,9 +20,6 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => PresetBloc(context.read()),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AddPresetBloc(context.read()),
         ),
       ],
       child: MaterialApp(
