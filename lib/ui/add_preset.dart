@@ -23,26 +23,32 @@ class AddPreset extends StatelessWidget {
           children: [
             OutlinedTextField(
               text: 'Title',
-              errorText: '',
+              errorText: null,
               onChanged: (text) {
                 context.read<AddPresetBloc>().onTitleChanged(text);
               },
             ),
             const SizedBox(height: 16),
-            OutlinedTextField(
-              text: 'Purchase fee rate',
-              errorText: '',
-              onChanged: (text) {
-                context.read<AddPresetBloc>().onPurchaseFeeRateChanged(text);
-              },
+            Selector<AddPresetBloc, bool>(
+              selector: (_, bloc) => bloc.hasPurchaseFeeRateError,
+              builder: (_, hasError, __) => OutlinedTextField(
+                text: 'Purchase fee rate',
+                errorText: hasError ? 'Illegal value' : null,
+                onChanged: (text) {
+                  context.read<AddPresetBloc>().onPurchaseFeeRateChanged(text);
+                },
+              ),
             ),
             const SizedBox(height: 16),
-            OutlinedTextField(
-              text: 'Sale fee rate',
-              errorText: '',
-              onChanged: (text) {
-                context.read<AddPresetBloc>().onSaleFeeRateChanged(text);
-              },
+            Selector<AddPresetBloc, bool>(
+              selector: (_, bloc) => bloc.hasSaleFeeRateError,
+              builder: (_, hasError, __) => OutlinedTextField(
+                text: 'Sale fee rate',
+                errorText: hasError ? 'Illegal value' : null,
+                onChanged: (text) {
+                  context.read<AddPresetBloc>().onSaleFeeRateChanged(text);
+                },
+              ),
             ),
             const SizedBox(height: 32),
             Align(

@@ -15,6 +15,10 @@ class AddPresetBloc extends ChangeNotifier {
 
   AddPresetBloc(this._repository);
 
+  bool get hasPurchaseFeeRateError => _hasPurchaseFeeRateError;
+
+  bool get hasSaleFeeRateError => _hasSaleFeeRateError;
+
   bool get completed => _completed;
 
   void onTitleChanged(String value) {
